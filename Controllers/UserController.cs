@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Text_Adventure_2.Data;
 using Text_Adventure_2.Models;
+using Text_Adventure_2.Services.UserService;
 
 namespace Text_Adventure_2.Controllers
 
@@ -10,17 +11,25 @@ namespace Text_Adventure_2.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly DataContext context;
+        private readonly IUserService _userService;
 
-        public UserController(DataContext context)
+        public UserController(IUserService userService)
         {
-            this.context = context;
+            _userService = userService;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<User>>> GetAllUsers()
         {
-            return Ok(context.Users);
+            return Ok(await _userService.GetAllUsers());
+        }
+
+        [HttpGet("login")]
+        public async Task<ActionResult<User>> LoginUser(string username, string password)
+        {
+            var tryUserLogin = await _userService.LoginUser(username, password);
+
+            return Ok(tryUserLogin);
         }
 
     }

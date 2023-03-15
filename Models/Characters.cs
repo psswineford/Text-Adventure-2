@@ -7,6 +7,7 @@
         public string Name { get; set; } = string.Empty;
         public int ArmorClass { get; set; } = 10;
         public int HitPoints { get; set; } = 20;
+        public int CurrentRoom { get; set; } = 0;
 
     }
 }

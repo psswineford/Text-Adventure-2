@@ -32,6 +32,9 @@ namespace Text_Adventure_2.Migrations
                     b.Property<int>("ArmorClass")
                         .HasColumnType("int");
 
+                    b.Property<int>("CurrentRoom")
+                        .HasColumnType("int");
+
                     b.Property<int>("HitPoints")
                         .HasColumnType("int");
 
@@ -103,9 +106,6 @@ namespace Text_Adventure_2.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CurrentRoom")
-                        .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .IsRequired()

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Text_Adventure_2.Data;
+using Text_Adventure_2.Services.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -18,6 +19,8 @@ builder.Services.AddCors(options =>
                           policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                       });
 });
+
+builder.Services.AddTransient<IUserService, UserService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
