@@ -32,5 +32,11 @@ namespace Text_Adventure_2.Controllers
             return Ok(tryUserLogin);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<User>> AddUser(User user)
+        {
+            return Ok(await _userService.AddUser(user));
+        }
+
     }
 }

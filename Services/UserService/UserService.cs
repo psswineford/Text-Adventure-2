@@ -31,5 +31,21 @@ namespace Text_Adventure_2.Services.UserService
             throw new Exception("User Not Found");
 
         }
+
+        public async Task<List<User>> AddUser(User user)
+        {
+            foreach(var i in this.context.Users.ToList())
+            {
+                if(i.Username == user.Username)
+                {
+                    throw new Exception("User Already Exists");
+                }    
+            }
+            this.context.Users.Add(user);
+            await this.context.SaveChangesAsync();
+            return await GetAllUsers(); //Fix this line, only return this user
+        }
+
+
     }
 }

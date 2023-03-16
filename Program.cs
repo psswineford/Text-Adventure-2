@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Text_Adventure_2.Data;
+using Text_Adventure_2.Services.CharacterService;
 using Text_Adventure_2.Services.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<ICharacterService, CharacterService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
