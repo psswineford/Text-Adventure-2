@@ -16,8 +16,16 @@ namespace Text_Adventure_2.Services.CharacterService
 
         public async Task<List<Characters>> AddCharacter(Characters character)
         {
-            _context.Characters.Add(character);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Characters.Add(character);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
             return await GetAllCharacters();
         }
 
