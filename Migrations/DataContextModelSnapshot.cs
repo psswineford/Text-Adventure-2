@@ -96,6 +96,27 @@ namespace Text_Adventure_2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Option1Num")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Option1Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Option2Num")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Option2Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Option3Num")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Option3Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 
