@@ -35,6 +35,15 @@ namespace Text_Adventure_2.Migrations
                     b.Property<int>("CurrentRoom")
                         .HasColumnType("int");
 
+                    b.Property<bool>("HasJewel")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasRing")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasSword")
+                        .HasColumnType("bit");
+
                     b.Property<int>("HitPoints")
                         .HasColumnType("int");
 

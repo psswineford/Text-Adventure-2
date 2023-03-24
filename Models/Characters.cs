@@ -10,6 +10,9 @@ namespace Text_Adventure_2.Models
         public int ArmorClass { get; set; } = 10;
         public int HitPoints { get; set; } = 20;
         public int CurrentRoom { get; set; } = 0;
+        public bool HasRing { get; set; } = false;
+        public bool HasJewel { get; set; } = false;
+        public bool HasSword { get; set; } = false;
         public int UserId { get; set; }
 
         [JsonIgnore]

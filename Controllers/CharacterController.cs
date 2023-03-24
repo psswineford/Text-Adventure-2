@@ -21,16 +21,38 @@ namespace Text_Adventure_2.Controllers
             return Ok(await _characterService.GetAllCharacters());
         }
 
-        [HttpGet("id")]
-        public async Task<ActionResult<List<Characters>>> GetCharactersByUserId(int id)
+        [HttpGet("userId")]
+        public async Task<ActionResult<List<Characters>>> GetCharactersByUserId(int userId)
         {
-            return Ok(await _characterService.GetCharactersByUserId(id));
+            return Ok(await _characterService.GetCharactersByUserId(userId));
         }
+
+        [HttpGet("id")]
+        public async Task<ActionResult<List<Characters>>> GetSelectedCharacter(int id)
+        {
+            return Ok(await _characterService.GetSelectedCharacter(id));
+        }
+
+
+
+
 
         [HttpPost("add")]
         public async Task<ActionResult<List<Characters>>> AddCharacter(Characters character)
         {
             return Ok(await _characterService.AddCharacter(character));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<List<Characters>>> UpdateCharacters(Characters updateCharacter)
+        {
+            var response = await _characterService.UpdateCharacters(updateCharacter);
+            if(response == null)
+            {
+                return BadRequest("No Character found");
+            }
+
+            return Ok(response);
         }
 
     }

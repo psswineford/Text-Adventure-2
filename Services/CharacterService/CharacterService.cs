@@ -35,13 +35,39 @@ namespace Text_Adventure_2.Services.CharacterService
             return characterList;
         }
 
-        public async Task<List<Characters>> GetCharactersByUserId(int id)
+        public async Task<List<Characters>> GetCharactersByUserId(int userId)
         {
             var characterList = await _context.Characters
-                .Where(x => x.UserId == id)
+                .Where(x => x.UserId == userId)
                 .ToListAsync();
 
             return characterList;
         }
+
+        public async Task<List<Characters>> GetSelectedCharacter(int id)
+        {
+            var selectedCharacter = await _context.Characters.Where(c => c.Id == id)
+                .ToListAsync();
+
+            return selectedCharacter;
+        }
+
+        public async Task<List<Characters>> UpdateCharacters(Characters updateCharacter)
+        {
+            var currentCharacter = await _context.Characters.FirstOrDefaultAsync(c => c.Id == updateCharacter.Id);
+
+            currentCharacter.Type = updateCharacter.Type;
+            currentCharacter.Name = updateCharacter.Name;
+            currentCharacter.ArmorClass = updateCharacter.ArmorClass;
+            currentCharacter.HitPoints = updateCharacter.HitPoints;
+            currentCharacter.CurrentRoom = updateCharacter.CurrentRoom;
+            currentCharacter.HasRing = updateCharacter.HasRing;
+            currentCharacter.HasJewel = updateCharacter.HasJewel;   
+            currentCharacter.HasSword = updateCharacter.HasSword;
+            currentCharacter.UserId = updateCharacter.UserId;
+
+            await _context.SaveChangesAsync();
+            return await GetCharactersByUserId(updateCharacter.UserId);
+        }   
     }
 }

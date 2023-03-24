@@ -1,4 +1,5 @@
-﻿using Text_Adventure_2.Models;
+﻿using System.Threading.Tasks;
+using Text_Adventure_2.Models;
 
 namespace Text_Adventure_2.Services.CharacterService
 {
@@ -8,6 +9,8 @@ namespace Text_Adventure_2.Services.CharacterService
 
         Task<List<Characters>> AddCharacter(Characters character);
         Task<List<Characters>> GetCharactersByUserId(int id);
+        Task<List<Characters>> UpdateCharacters(Characters updateCharacter);
+        Task<List<Characters>> GetSelectedCharacter(int id);
     }
 }
 
