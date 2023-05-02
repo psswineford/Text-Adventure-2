@@ -4,6 +4,6 @@ namespace Text_Adventure_2.Services.RoomService
 {
     public interface IRoomService
     {
-        Task<List<Rooms>> GetRoomByRoomNumber(int id);
+        Task<Rooms> GetRoomByRoomNumber(int roomNumber);
     }
 }

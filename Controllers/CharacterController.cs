@@ -15,11 +15,6 @@ namespace Text_Adventure_2.Controllers
             _characterService = characterService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<Characters>>> GetAllCharacters()
-        {
-            return Ok(await _characterService.GetAllCharacters());
-        }
 
         [HttpGet("userId")]
         public async Task<ActionResult<List<Characters>>> GetCharactersByUserId(int userId)

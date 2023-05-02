@@ -13,10 +13,11 @@ namespace Text_Adventure_2.Services.RoomService
             _context = context;
         }
 
-        public async Task<List<Rooms>> GetRoomByRoomNumber(int id)
+        public async Task<Rooms> GetRoomByRoomNumber(int roomNumber)
         {
+
             var currentRoom = await _context.Rooms
-                .Where(r => r.RoomNumber == id).ToListAsync();
+                .Where(r => r.RoomNumber == roomNumber).FirstAsync();
 
             return currentRoom;
        

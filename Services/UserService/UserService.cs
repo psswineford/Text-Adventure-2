@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
 using Text_Adventure_2.Data;
 using Text_Adventure_2.Models;
 
@@ -18,6 +20,7 @@ namespace Text_Adventure_2.Services.UserService
             return await this.context.Users.ToListAsync();
         }
 
+        //change to single
         public async Task<User> LoginUser(string username, string password)
         {
             foreach (var i in this.context.Users)
@@ -32,7 +35,7 @@ namespace Text_Adventure_2.Services.UserService
 
         }
 
-        public async Task<List<User>> AddUser(User user)
+        public async Task<User> AddUser(User user)
         {
             foreach(var i in this.context.Users.ToList())
             {
@@ -43,7 +46,7 @@ namespace Text_Adventure_2.Services.UserService
             }
             this.context.Users.Add(user);
             await this.context.SaveChangesAsync();
-            return await GetAllUsers(); //Fix this line, only return this user
+            return user; //Fix this line, only return this user
         }
 
 

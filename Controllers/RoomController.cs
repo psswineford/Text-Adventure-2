@@ -15,9 +15,9 @@ namespace Text_Adventure_2.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Rooms>>> GetRoomByRoomNumber(int id)
+        public async Task<ActionResult<Rooms>> GetRoomByRoomNumber(int roomNumber)
         {
-            return Ok(await _roomService.GetRoomByRoomNumber(id));
+            return Ok(await _roomService.GetRoomByRoomNumber(roomNumber));
         }
 
 

@@ -26,13 +26,7 @@ namespace Text_Adventure_2.Services.CharacterService
                 throw new Exception(ex.Message);
             }
 
-            return await GetAllCharacters();
-        }
-
-        public async Task<List<Characters>> GetAllCharacters()
-        {
-            var characterList = await _context.Characters.ToListAsync();    
-            return characterList;
+            return await GetCharactersByUserId(character.UserId);
         }
 
         public async Task<List<Characters>> GetCharactersByUserId(int userId)
@@ -44,17 +38,16 @@ namespace Text_Adventure_2.Services.CharacterService
             return characterList;
         }
 
-        public async Task<List<Characters>> GetSelectedCharacter(int id)
+        public async Task<Characters> GetSelectedCharacter(int id)
         {
-            var selectedCharacter = await _context.Characters.Where(c => c.Id == id)
-                .ToListAsync();
-
+            var selectedCharacter = await _context.Characters.SingleAsync(c => c.Id == id);
+  
             return selectedCharacter;
         }
 
         public async Task<List<Characters>> UpdateCharacters(Characters updateCharacter)
         {
-            var currentCharacter = await _context.Characters.FirstOrDefaultAsync(c => c.Id == updateCharacter.Id);
+            var currentCharacter = await _context.Characters.SingleAsync(c => c.Id == updateCharacter.Id);
 
             currentCharacter.Type = updateCharacter.Type;
             currentCharacter.Name = updateCharacter.Name;

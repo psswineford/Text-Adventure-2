@@ -6,6 +6,6 @@ namespace Text_Adventure_2.Services.UserService
     {
         Task<List<User>> GetAllUsers();
         Task<User> LoginUser(string email, string password);
-        Task<List<User>> AddUser(User user);
+        Task<User> AddUser(User user);
     }
 }
