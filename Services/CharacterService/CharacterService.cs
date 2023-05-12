@@ -38,10 +38,12 @@ namespace Text_Adventure_2.Services.CharacterService
             return characterList;
         }
 
-        public async Task<Characters> GetSelectedCharacter(int id)
+        public async Task<List<Characters>> GetSelectedCharacter(int id)
         {
-            var selectedCharacter = await _context.Characters.SingleAsync(c => c.Id == id);
-  
+            var selectedCharacter = await _context.Characters
+                .Where(x => x.Id == id)
+                .ToListAsync();
+
             return selectedCharacter;
         }
 
@@ -58,7 +60,7 @@ namespace Text_Adventure_2.Services.CharacterService
             currentCharacter.HasJewel = updateCharacter.HasJewel;   
             currentCharacter.HasSword = updateCharacter.HasSword;
             currentCharacter.UserId = updateCharacter.UserId;
-
+           // _context.Characters.Update(currentCharacter);    look into update
             await _context.SaveChangesAsync();
             return await GetCharactersByUserId(updateCharacter.UserId);
         }   

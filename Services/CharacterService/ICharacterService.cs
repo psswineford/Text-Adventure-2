@@ -9,7 +9,7 @@ namespace Text_Adventure_2.Services.CharacterService
         Task<List<Characters>> AddCharacter(Characters character);
         Task<List<Characters>> GetCharactersByUserId(int id);
         Task<List<Characters>> UpdateCharacters(Characters updateCharacter);
-        Task<Characters> GetSelectedCharacter(int id);
+        Task<List<Characters>> GetSelectedCharacter(int id);
     }
 }
 
