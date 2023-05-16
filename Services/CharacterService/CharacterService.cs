@@ -64,5 +64,18 @@ namespace Text_Adventure_2.Services.CharacterService
             await _context.SaveChangesAsync();
             return await GetCharactersByUserId(updateCharacter.UserId);
         }   
+
+        public async Task<Characters> DeleteCharactersByID(int id)
+        {
+            var characterToDelete = await _context.Characters
+                .Where (x => x.Id == id)
+                .SingleAsync();
+
+            _context.Characters.Remove(characterToDelete);
+            await _context.SaveChangesAsync();
+
+            return characterToDelete;
+            
+        }
     }
 }

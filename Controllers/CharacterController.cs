@@ -50,5 +50,11 @@ namespace Text_Adventure_2.Controllers
             return Ok(response);
         }
 
+        [HttpDelete("charId")]
+        public async Task<ActionResult<Characters>> DeleteCharacter(int id)
+        {
+            return Ok(await _characterService.DeleteCharactersByID(id));
+        }
+
     }
 }
